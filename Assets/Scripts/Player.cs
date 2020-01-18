@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         CheckControls();
+        CheckControllerControls();
 
         if (isInvulnerable)
         {
@@ -97,11 +98,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(laser, transform.position, transform.rotation);
-            //CameraShaker.Instance.ShakeOnce(7f, 10f, 0.0f, 0.5f);
-            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
-            audioSource.pitch = 1 + Random.Range(-0.25f, 0.25f);
-            audioSource.PlayOneShot(audioSource.clip);
+            FireLaser();
         }
     }
 
@@ -148,5 +145,41 @@ public class Player : MonoBehaviour
 
             timeLastBlinked = Time.time;
         }
+    }
+
+    private void CheckControllerControls()
+    {
+        if (Input.GetAxis("Y") > 0)
+        {
+            transform.Translate(Vector2.up * Time.deltaTime * speed * Input.GetAxis("Y"));
+        }
+
+        if (Input.GetAxis("Y") < 0)
+        {
+            transform.Translate(Vector2.down * Time.deltaTime * speed * Mathf.Abs(Input.GetAxis("Y")));
+        }
+
+        if (Input.GetAxis("X") > 0)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed * Input.GetAxis("X"));
+        }
+
+        if (Input.GetAxis("X") < 0)
+        {
+            transform.Translate(Vector2.left * Time.deltaTime * speed * Mathf.Abs(Input.GetAxis("X")));
+        }
+
+        if (Input.GetAxis("Shoot") > 0)
+        {
+            FireLaser();
+        }
+    }
+
+    private void FireLaser()
+    {
+        Instantiate(laser, transform.position, transform.rotation);
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
+        audioSource.pitch = 1 + Random.Range(-0.25f, 0.25f);
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }

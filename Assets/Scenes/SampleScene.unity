@@ -1348,7 +1348,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761149565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
@@ -1821,6 +1821,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fadeOut
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803236250008045651, guid: 54ffeef6fc9bfdb48a0e6913c487dd33,
+        type: 3}
+      propertyPath: timeInvulnerable
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ffeef6fc9bfdb48a0e6913c487dd33, type: 3}
